@@ -3,7 +3,7 @@ import cors from 'cors';
 import morgan from 'morgan';
 import authRoutes from './routes/auth.routes';
 import userRoutes from './routes/user.routes';
-import planRoutes from './routes/plan.routes';
+import gptRoutes from './routes/gpt.routes';
 import { errorHandler } from './middlewares/error.middleware';
 
 const app = express();
@@ -15,7 +15,7 @@ app.use(express.json());
 // API Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/user', userRoutes);
-app.use('/api/plan', planRoutes);
+app.use('/api/gpt', gptRoutes);
 
 // Error Handling
 app.use(errorHandler);
