@@ -16,6 +16,7 @@ app.use(express.json());
 app.use('/api/auth', authRoutes);
 app.use('/api/user', userRoutes);
 app.use('/api/gpt', gptRoutes);
+app.use('/api/chat', gptRoutes);
 
 // Error Handling
 app.use(errorHandler);
