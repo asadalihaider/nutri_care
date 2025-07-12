@@ -1,0 +1,8 @@
+export interface UserProfileInput {
+  age: number;
+  gender: string;
+  height: number;
+  weight: number;
+  targetWeight: number;
+}
+
