@@ -1,22 +1,54 @@
-import { getOpenAIResponse } from '../utils/openAi';
-import { getNutritionChatPrompt } from '../prompts/chatPrompt';
 import prisma from '../../prisma/client';
-import { addDays } from 'date-fns';
+import { getOpenAIResponseFromMessages } from '../utils/openAi';
 
-export async function chatWithNutritionAgent(userId: string, message: string) {
-  const prompt = getNutritionChatPrompt(message);
-  const response = await getOpenAIResponse(prompt);
+export async function fetchChatHistory(sessionId: string): Promise<
+  { role: 'user' | 'assistant' | 'system'; content: string }[]
+> {
+  const messages = await prisma.chatMessage.findMany({
+    where: { sessionId },
+    orderBy: { createdAt: 'asc' },
+  });
 
-  // Check for marker
-  if (response.includes('<<FOLLOW_UP>>')) {
-    await prisma.chatFollowup.create({
-      data: {
-        userId,
-        message,
-        dateFor: addDays(new Date(), 1),
-      },
-    });
+  return messages.map((msg) => ({
+    role: msg.sender === 'user' ? 'user' : 'assistant',
+    content: msg.content,
+  }));
+}
+
+export async function handleMessageWithHistory(userId: string, sessionId: string, message: string) {
+  const session = await prisma.chatSession.findUnique({
+    where: { id: sessionId },
+  });
+  
+  if (!session || session.userId !== userId) {
+    throw new Error('Unauthorized access to chat session');
   }
 
-  return response.replace('<<FOLLOW_UP>>', '').trim();
+  // Save user message
+  await prisma.chatMessage.create({
+    data: {
+      sessionId,
+      sender: 'user',
+      content: message,
+    },
+  });
+
+  const history = await fetchChatHistory(sessionId);
+
+  const response = await getOpenAIResponseFromMessages([
+    { role: 'system', content: 'You are a helpful nutrition assistant.' },
+    ...history,
+    { role: 'user', content: message },
+  ]);
+
+  // Save assistant response
+  await prisma.chatMessage.create({
+    data: {
+      sessionId,
+      sender: 'assistant',
+      content: response,
+    },
+  });
+
+  return response;
 }
