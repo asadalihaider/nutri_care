@@ -3,7 +3,9 @@ import { config } from '../config/env';
 
 export async function sendOtpEmail(email: string, otp: string) {
   const transporter = nodemailer.createTransport({
-    service: 'gmail',
+    host: config.smtpHost,      
+    port: config.smtpPort,      
+    secure: config.smtpSecure,  
     auth: {
       user: config.emailUser,
       pass: config.emailPass,
