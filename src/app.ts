@@ -21,7 +21,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/user', userRoutes);
 app.use('/api/gpt', gptRoutes);
 app.use('/api/chat', chatRoutes);
-app.use('/api/notification', notificationRoutes);
+app.use('/api/notifications', notificationRoutes);
 
 // Error Handling
 app.use(errorHandler);

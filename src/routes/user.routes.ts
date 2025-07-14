@@ -10,7 +10,7 @@ const router = Router();
 
 router.use(authenticate);
 
-router.post('/onboarding', submitProfile);
+router.post('/profile', submitProfile);
 router.post('/questionnaire', submitQuestionnaire);
 router.get('/data', getUserData);
 
