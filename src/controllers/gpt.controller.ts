@@ -15,5 +15,7 @@ export const generateBloodTestSummary = async (req: Request, res: Response) => {
   }
 
   const summary = await gptService.generateBloodSummary(reportText);
-  res.status(200).json({ summary });
+  const parsedSummary = JSON.parse(summary);
+
+  res.status(200).json(parsedSummary);
 };
