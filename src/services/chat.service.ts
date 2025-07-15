@@ -1,4 +1,5 @@
 import prisma from '../../prisma/client';
+import { getNutritionChatPrompt } from '../prompts/chatPrompt';
 import { getOpenAIResponseFromMessages } from '../utils/openAi';
 
 export async function fetchChatHistory(sessionId: string): Promise<
@@ -35,8 +36,13 @@ export async function handleMessageWithHistory(userId: string, sessionId: string
 
   const history = await fetchChatHistory(sessionId);
 
-  const response = await getOpenAIResponseFromMessages([
-    { role: 'system', content: 'You are a helpful nutrition assistant.' },
+  const systemPrompt: { role: 'system'; content: string } = {
+    role: 'system',
+    content: getNutritionChatPrompt(message),
+  };
+
+  var response = await getOpenAIResponseFromMessages([
+    systemPrompt,
     ...history,
     { role: 'user', content: message },
   ]);
@@ -49,6 +55,18 @@ export async function handleMessageWithHistory(userId: string, sessionId: string
       content: response,
     },
   });
+
+  if (response.includes('<<FOLLOW_UP>>')) {
+    await prisma.chatFollowup.create({
+      data: {
+        userId,
+        message,
+        dateFor: new Date(Date.now() + 24 * 60 * 60 * 1000), 
+      },
+    });
+    response = response.replace('<<FOLLOW_UP>>', '').trim();
+  }
+
 
   return response;
 }
