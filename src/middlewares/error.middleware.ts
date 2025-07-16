@@ -3,9 +3,9 @@ import { Prisma } from '@prisma/client';
 
 export function errorHandler(
   err: any,
-  req: Request,
+  _req: Request,
   res: Response,
-  next: NextFunction
+  _next: NextFunction
 ) {
   if (
     err instanceof Prisma.PrismaClientKnownRequestError &&
