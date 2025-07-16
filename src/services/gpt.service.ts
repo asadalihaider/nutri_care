@@ -1,4 +1,4 @@
-import prisma from '../../prisma/client';
+import prisma from '../prisma/client';
 import { getOpenAIResponse } from '../utils/openAi';
 import { getNutritionPlanPrompt } from '../prompts/nutritionPrompts';
 import { getBloodReportSummaryPrompt } from '../prompts/getBloodReportSummaryPrompt';

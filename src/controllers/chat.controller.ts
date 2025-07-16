@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import prisma from '../../prisma/client';
+import prisma from '../prisma/client';
 import { handleMessageWithHistory } from '../services/chat.service';
 
 export const createChatSession = async (req: Request, res: Response) => {

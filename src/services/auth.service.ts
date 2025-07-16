@@ -1,6 +1,6 @@
 import * as bcrypt from 'bcrypt';
 import * as jwt from 'jsonwebtoken';
-import prisma from '../../prisma/client';
+import prisma from '../prisma/client';
 import { config } from '../config/env';
 import { sendOtpEmail } from '../utils/mailer';
 import { generateOtp } from '../utils/otp';

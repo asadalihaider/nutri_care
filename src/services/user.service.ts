@@ -1,4 +1,4 @@
-import prisma from '../../prisma/client';
+import prisma from '../prisma/client';
 import { Prisma as PrismaClient } from '@prisma/client';
 import { QuestionnaireInput } from '../types/questionnaire.types';
 

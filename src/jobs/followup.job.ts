@@ -1,5 +1,5 @@
 import cron from 'node-cron';
-import prisma from '../../prisma/client';
+import prisma from '../prisma/client';
 
 export function startFollowupJob() {
   cron.schedule('0 9 * * *', async () => {

@@ -1,4 +1,4 @@
-import prisma from '../../prisma/client';
+import prisma from '../prisma/client';
 import { getNutritionChatPrompt } from '../prompts/chatPrompt';
 import { getOpenAIResponseFromMessages } from '../utils/openAi';
 
