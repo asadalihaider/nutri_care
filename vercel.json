@@ -1,10 +1,10 @@
 {
-  "rewrites": [
+  "version": 2,
+  "builds": [{ "src": "src/server.ts", "use": "@vercel/node" }],
+  "routes": [
     {
-      "source": "/(.*)",
-      "destination": "/"
+      "src": "/(.*)",
+      "dest": "src/server.ts"
     }
-  ],
-  "buildCommand": "npm run build",
-  "outputDirectory": "dist"
+  ]
 }
