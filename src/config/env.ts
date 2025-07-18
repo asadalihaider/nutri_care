@@ -1,16 +1,30 @@
 import * as dotenv from 'dotenv';
 dotenv.config();
 
+function required(key: string): string {
+  const val = process.env[key];
+  if (!val) throw new Error(`Missing required env variable: ${key}`);
+  return val;
+}
+
 export const config = {
-  port: process.env.PORT || 3000,
-  jwtSecret: process.env.JWT_SECRET ?? (() => { throw new Error('JWT_SECRET not set'); })(),
+  port: required('PORT'),
 
-  emailUser: process.env.EMAIL_USER ?? (() => { throw new Error('EMAIL_USER not set'); })(),
-  emailPass: process.env.EMAIL_PASS ?? (() => { throw new Error('EMAIL_PASS not set'); })(),
+  jwtSecret: required('JWT_SECRET'),
+  
+  smtpHost: required('SMTP_HOST'),
+  smtpPort: required('SMTP_PORT'),
+  smtpSecure: required('SMTP_SECURE'),
+  emailUser: required('EMAIL_USER'),
+  emailPass: required('EMAIL_PASS'),
 
-  smtpHost: process.env.SMTP_HOST ?? (() => { throw new Error('SMTP_HOST not set'); })(),
-  smtpPort: process.env.SMTP_PORT ? Number(process.env.SMTP_PORT) : (() => { throw new Error('SMTP_PORT not set'); })(),
-  smtpSecure: process.env.SMTP_SECURE === 'true',
+  openaiApiKey: required('OPENAI_API_KEY'),
 
-  openaiApiKey: process.env.OPENAI_API_KEY ?? (() => { throw new Error('OPENAI_API_KEY not set'); })(),
+  aws: {
+    region: required('AWS_REGION'),
+    bucket: required('AWS_BUCKET_NAME'),
+    accessKeyId: required('AWS_ACCESS_KEY_ID'),
+    secretAccessKey: required('AWS_SECRET_ACCESS_KEY'),
+  },
+
 };

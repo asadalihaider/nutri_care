@@ -1,7 +1,16 @@
 import prisma from '../prisma/client';
 import { Prisma as PrismaClient } from '@prisma/client';
 import { QuestionnaireInput } from '../types/questionnaire.types';
+import { uploadToS3 } from '../utils/aws';
 import { UserProfileInput } from '../types/user.types';
+
+export async function uploadImage(
+  data: { file: Express.Multer.File }
+) {
+  const imageUrl = await uploadToS3(data.file.buffer, data.file.originalname, data.file.mimetype);
+
+  return { message: 'Image uploaded successfully', imageUrl };
+}
 
 export async function saveUserProfile(userId: string, data: UserProfileInput) {
   const profile = await prisma.userProfile.upsert({
