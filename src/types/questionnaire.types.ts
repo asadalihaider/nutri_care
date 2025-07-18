@@ -1,4 +1,15 @@
-import { EnergyLevel, WaterIntake } from './enums';
+import { 
+  ActivityLevelCode,
+  EnergyLevelCode,
+  ExerciseFrequencyCode,
+  FitnessGoalCode,
+  HealthMotivationCode,
+  HealthOptimizationCode,
+  SleepQualityCode,
+  StressLevelCode,
+  WaterIntakeCode
+} from './enums';
+
 export interface MedicalBackground {
   takingMedications: boolean;
   medicationsList?: string[];
@@ -7,38 +18,41 @@ export interface MedicalBackground {
   allergies: string[];
   pastConditions: string[];
   specificConcerns?: string;
+  medicalConditions: string[];
+  isAnyPastCondition: boolean;
+  isAnyHealthConcern: boolean;
 }
   
 export interface LifestyleHabits {
-  energyLevels: EnergyLevel;
-  waterIntake: WaterIntake;
-  consumes: {
-    alcohol: boolean;
-    caffeine: boolean;
-    nicotine: boolean;
-  };
+  energyLevels: EnergyLevelCode;
+  waterIntake: WaterIntakeCode;
+  sleepQualityCode?: SleepQualityCode;
+  stressLevelCode?: StressLevelCode;
+  consumes: string[];
 }
   
 export interface DietPreferences {
-  vegetarian: boolean;
-  vegan: boolean;
-  glutenFree: boolean;
-  dairyFree: boolean;
-  otherRestrictions?: string;
+  diets: string[];
+  isFoodInTolerances: boolean;
+  foodInTolerances: string[];
+  isFoodDislikes: boolean;
+  foodDislikes: string[];
+  dietPreferenceReligiousCode: string;
+  dietaryGoalCode: string;
+  mealFrequencyCode: string;
+  nutrientPreferenceCode: string;
 }
 
 export interface PhysicalActivity {
-  exerciseFrequency: string;
-  exerciseTypes: string[];
-  dailyStepCount: number;
+  activityLevelCode: ActivityLevelCode;
+  exerciseFrequencyCode: ExerciseFrequencyCode;
+  fitnessGoalCode: FitnessGoalCode;
+  bodyTypeGoalCode: string;
 }
 
 export interface HealthGoals {
-  weightLoss: boolean;
-  muscleGain: boolean;
-  improvedEnergy: boolean;
-  betterSleep: boolean;
-  biohackingGoals?: string;
+  healthOptimizationCode: HealthOptimizationCode;
+  healthMotivationCode: HealthMotivationCode;
 }
 
 export interface QuestionnaireInput {
