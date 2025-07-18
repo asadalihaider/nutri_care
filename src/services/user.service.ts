@@ -1,11 +1,9 @@
 import prisma from '../prisma/client';
 import { Prisma as PrismaClient } from '@prisma/client';
 import { QuestionnaireInput } from '../types/questionnaire.types';
+import { UserProfileInput } from '../types/user.types';
 
-export async function saveUserProfile(
-  userId: string,
-  data: { age: number; gender: string; height: number; weight: number; targetWeight: number }
-) {
+export async function saveUserProfile(userId: string, data: UserProfileInput) {
   const profile = await prisma.userProfile.upsert({
     where: { userId },
     update: data,
