@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import * as userService from '../services/user.service';
 
 export const uploadImage = async (req: Request, res: Response) => {
-  const result = await userService.uploadImage(req.body.file);
+  const result = await userService.uploadImage({ file: req.file as Express.Multer.File });
   res.status(200).json(result);
 };
 

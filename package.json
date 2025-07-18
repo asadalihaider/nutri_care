@@ -5,14 +5,18 @@
   "main": "dist/server.js",
   "scripts": {
     "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
-    "build": "tsc && npx prisma generate --schema=src/prisma/schema.prisma",
+    "build": "tsc && npx prisma generate",
     "start": "node dist/server.js",
-    "postinstall": "npx prisma generate --schema=src/prisma/schema.prisma"
+    "postinstall": "npx prisma generate"
+  },
+  "prisma": {
+    "schema": "./src/prisma/schema.prisma"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@aws-sdk/client-s3": "^3.848.0",
+    "@aws-sdk/s3-request-presigner": "^3.848.0",
     "@prisma/client": "^6.11.1",
     "bcrypt": "^6.0.0",
     "cors": "^2.8.5",

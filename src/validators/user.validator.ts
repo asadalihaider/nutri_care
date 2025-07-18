@@ -11,20 +11,6 @@ import {
   WaterIntakeCode
 } from '../types/enums';
 
-export const uploadImageSchema = z.object({
-  file: z
-    .custom<Express.Multer.File>()
-    .refine((file) => !!file, {
-      message: 'Image file is required',
-    })
-    .refine((file) => ['image/jpeg', 'image/png', 'image/webp'].includes(file.mimetype), {
-      message: 'Only JPEG, PNG, or WEBP files are allowed',
-    })
-    .refine((file) => file.size <= 5 * 1024 * 1024, {
-      message: 'Image must be less than 5MB',
-    }),
-});
-
 export const profileSchema = z.object({
   age: z.number().min(0, 'Age must be a positive number'),
   gender: z.string().min(2).max(10),

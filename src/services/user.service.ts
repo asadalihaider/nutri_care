@@ -7,9 +7,9 @@ import { UserProfileInput } from '../types/user.types';
 export async function uploadImage(
   data: { file: Express.Multer.File }
 ) {
-  const imageUrl = await uploadToS3(data.file.buffer, data.file.originalname, data.file.mimetype);
+  const response = await uploadToS3(data.file.buffer, data.file.originalname, data.file.mimetype);
 
-  return { message: 'Image uploaded successfully', imageUrl };
+  return { ...response };
 }
 
 export async function saveUserProfile(userId: string, data: UserProfileInput) {
