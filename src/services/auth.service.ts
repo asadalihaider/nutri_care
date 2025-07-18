@@ -25,7 +25,11 @@ export async function signup(data: { email: string; password: string }) {
 export async function login(data: { email: string; password: string, rememberMe?: boolean }) {
   const { email, password, rememberMe } = data;
 
-  const user = await prisma.user.findUnique({ where: { email } });
+  const user = await prisma.user.findUnique({
+    where: { email }, 
+    include: { questionnaire: true } 
+  });
+  
   if (!user) throw new Error('Invalid credentials');
 
   const valid = await bcrypt.compare(password, user.password);
@@ -39,7 +43,16 @@ export async function login(data: { email: string; password: string, rememberMe?
     }
   );
 
-  return { token, user: { id: user.id, email: user.email, isVerified: user.isVerified } };
+  return { 
+    token, 
+    user: { 
+      id: user.id, 
+      name: user.name,
+      email: user.email, 
+      isVerified: user.isVerified, 
+      questionnaire: !!user.questionnaire, 
+    } 
+  };
 }
 
 export async function sendOtp(email: string) {
