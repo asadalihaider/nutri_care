@@ -47,15 +47,6 @@ export async function handleMessageWithHistory(userId: string, sessionId: string
     { role: 'user', content: message },
   ]);
 
-  // Save assistant response
-  await prisma.chatMessage.create({
-    data: {
-      sessionId,
-      sender: 'assistant',
-      content: response,
-    },
-  });
-
   if (response.includes('<<FOLLOW_UP>>')) {
     await prisma.chatFollowup.create({
       data: {
@@ -67,6 +58,14 @@ export async function handleMessageWithHistory(userId: string, sessionId: string
     response = response.replace('<<FOLLOW_UP>>', '').trim();
   }
 
+  // Save assistant response
+  await prisma.chatMessage.create({
+    data: {
+      sessionId,
+      sender: 'assistant',
+      content: response,
+    },
+  });
 
   return response;
 }

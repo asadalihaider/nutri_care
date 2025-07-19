@@ -13,8 +13,8 @@ export const config = {
   jwtSecret: required('JWT_SECRET'),
   
   smtpHost: required('SMTP_HOST'),
-  smtpPort: required('SMTP_PORT'),
-  smtpSecure: required('SMTP_SECURE'),
+  smtpPort: Number(required('SMTP_PORT')),
+  smtpSecure: required('SMTP_SECURE') === 'true',
   emailUser: required('EMAIL_USER'),
   emailPass: required('EMAIL_PASS'),
 

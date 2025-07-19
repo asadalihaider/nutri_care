@@ -21,7 +21,7 @@ export function startFollowupJob() {
       await prisma.notification.create({
         data: {
           userId,
-          title: `Hey ${user.name}, still feeling okay?`,
+          title: `Hey ${user.name}, how're you today?`,
           message: `You mentioned yesterday ${simplified}. How have you been?`,
         },
       });
