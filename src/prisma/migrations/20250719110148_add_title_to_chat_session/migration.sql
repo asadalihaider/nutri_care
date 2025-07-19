@@ -1,0 +1,1 @@
+ALTER TABLE "ChatSession" ADD COLUMN "title" TEXT NOT NULL;

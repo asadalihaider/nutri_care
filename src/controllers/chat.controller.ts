@@ -4,8 +4,10 @@ import { handleMessageWithHistory } from '../services/chat.service';
 
 export const createChatSession = async (req: Request, res: Response) => {
   const userId = (req as any).user.id;
-  const session = await prisma.chatSession.create({ data: { userId } });
-  res.status(201).json({ session });
+  const { title } = req.body;
+
+  const session = await prisma.chatSession.create({ data: { userId, title } });
+  res.status(200).json({ session });
 };
 
 export const getUserChatSessions = async (req: Request, res: Response) => {
