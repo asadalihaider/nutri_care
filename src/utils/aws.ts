@@ -12,11 +12,11 @@ const s3 = new S3Client({
 });
 
 export async function uploadToS3(fileBuffer: Buffer, fileName: string, mimetype: string): Promise<{ imageName: string; publicUrl: string }> {
-  const key = `profile-images/${uuidv4()}-${fileName}`;
+  const newfileName = `${uuidv4()}-${fileName}`;
 
   const command = new PutObjectCommand({
     Bucket: config.aws.bucket,
-    Key: key,
+    Key: `profile-images/${newfileName}`,
     Body: fileBuffer,
     ContentType: mimetype,
   });
@@ -25,10 +25,10 @@ export async function uploadToS3(fileBuffer: Buffer, fileName: string, mimetype:
 
   const getObjectCommand = new GetObjectCommand({
     Bucket: config.aws.bucket,
-    Key: key,
+    Key: `profile-images/${newfileName}`,
   });
 
   const signedUrl = await getSignedUrl(s3, getObjectCommand, { expiresIn: 3600 });
 
-  return { imageName: key, publicUrl: signedUrl };
+  return { imageName: newfileName, publicUrl: signedUrl };
 }
