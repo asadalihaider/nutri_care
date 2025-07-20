@@ -1,13 +1,20 @@
 import { z } from 'zod';
 import {
   ActivityLevelCode,
+  BodyTypeGoalCode,
+  DietaryGoalCode,
+  DietCode,
+  DietPreferenceCode,
   EnergyLevelCode,
   ExerciseFrequencyCode,
   FitnessGoalCode,
   HealthMotivationCode,
   HealthOptimizationCode,
+  MealFrequencyCode,
+  NutrientPreferenceCode,
   SleepQualityCode,
   StressLevelCode,
+  SubstanceConsumptionCode,
   WaterIntakeCode
 } from '../types/enums';
 
@@ -22,12 +29,12 @@ export const profileSchema = z.object({
 export const questionnaireSchema = z.object({
   medicalBackground: z.object({
     takingMedications: z.boolean(),
-    medicationsList: z.array(z.string()).optional(),
+    medicationsList: z.array(z.object({ name: z.string(), dosage: z.number().min(0), frequency: z.number().min(0) })),
     takingSupplements: z.boolean(),
-    supplementsList: z.array(z.string()).optional(),
+    supplementsList: z.array(z.object({ name: z.string(), dosage: z.number().min(0), frequency: z.number().min(0) })),
     allergies: z.array(z.string()),
     pastConditions: z.array(z.string()),
-    specificConcerns: z.string().optional(),
+    specificConcerns: z.string(),
     medicalConditions: z.array(z.string()),
     isAnyPastCondition: z.boolean(),
     isAnyHealthConcern: z.boolean(),
@@ -35,26 +42,26 @@ export const questionnaireSchema = z.object({
   lifestyleHabits: z.object({
     energyLevels: z.nativeEnum(EnergyLevelCode),
     waterIntake: z.nativeEnum(WaterIntakeCode),
-    sleepQualityCode: z.nativeEnum(SleepQualityCode).optional(),
-    stressLevelCode: z.nativeEnum(StressLevelCode).optional(),
-    consumes: z.array(z.string()),
+    sleepQualityCode: z.nativeEnum(SleepQualityCode),
+    stressLevelCode: z.nativeEnum(StressLevelCode),
+    consumes: z.array(z.nativeEnum(SubstanceConsumptionCode)),
   }),
   dietPreferences: z.object({
-    diets: z.array(z.string()),
+    diets: z.array(z.nativeEnum(DietCode)),
     isFoodInTolerances: z.boolean(),
     foodInTolerances: z.array(z.string()),
     isFoodDislikes: z.boolean(),
     foodDislikes: z.array(z.string()),
-    dietPreferenceReligiousCode: z.string(),
-    dietaryGoalCode: z.string(),
-    mealFrequencyCode: z.string(),
-    nutrientPreferenceCode: z.string(),
+    dietPreferenceReligiousCode: z.nativeEnum(DietPreferenceCode),
+    dietaryGoalCode: z.nativeEnum(DietaryGoalCode),
+    mealFrequencyCode: z.nativeEnum(MealFrequencyCode),
+    nutrientPreferenceCode: z.nativeEnum(NutrientPreferenceCode),
   }),
   physicalActivity: z.object({
     activityLevelCode: z.nativeEnum(ActivityLevelCode),
     exerciseFrequencyCode: z.nativeEnum(ExerciseFrequencyCode),
     fitnessGoalCode: z.nativeEnum(FitnessGoalCode),
-    bodyTypeGoalCode: z.string(),
+    bodyTypeGoalCode: z.nativeEnum(BodyTypeGoalCode),
   }),
   healthGoals: z.object({
     healthOptimizationCode: z.nativeEnum(HealthOptimizationCode),
