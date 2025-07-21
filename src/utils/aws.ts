@@ -11,7 +11,7 @@ const s3 = new S3Client({
   },
 });
 
-export async function uploadToS3(fileBuffer: Buffer, fileName: string, mimetype: string): Promise<{ imageName: string; publicUrl: string }> {
+export async function uploadToS3(fileBuffer: Buffer, fileName: string, mimetype: string): Promise<{ imageName: string; }> {
   const newfileName = `${uuidv4()}-${fileName}`;
 
   const command = new PutObjectCommand({
@@ -23,12 +23,5 @@ export async function uploadToS3(fileBuffer: Buffer, fileName: string, mimetype:
 
   await s3.send(command);
 
-  const getObjectCommand = new GetObjectCommand({
-    Bucket: config.aws.bucket,
-    Key: `profile-images/${newfileName}`,
-  });
-
-  const signedUrl = await getSignedUrl(s3, getObjectCommand, { expiresIn: 3600 });
-
-  return { imageName: newfileName, publicUrl: signedUrl };
+  return { imageName: newfileName };
 }

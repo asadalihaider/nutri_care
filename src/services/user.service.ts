@@ -3,6 +3,9 @@ import { Prisma as PrismaClient } from '@prisma/client';
 import { QuestionnaireInput } from '../types/questionnaire.types';
 import { uploadToS3 } from '../utils/aws';
 import { UserProfileInput } from '../types/user.types';
+import { S3Client, GetObjectCommand } from '@aws-sdk/client-s3';
+import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
+import { config } from '../config/env';
 
 export async function uploadImage(
   data: { file: Express.Multer.File }
@@ -56,6 +59,25 @@ export async function getUserData(userId: string) {
 
   if (!user || !user.profile || !user.questionnaire) {
     throw new Error('Incomplete user data');
+  }
+
+  if (user.profile.image) {    
+    const s3 = new S3Client({
+      region: config.aws.region,
+      credentials: {
+        accessKeyId: config.aws.accessKeyId,
+        secretAccessKey: config.aws.secretAccessKey,
+      },
+    });
+
+    const getObjectCommand = new GetObjectCommand({
+      Bucket: config.aws.bucket,
+      Key: `profile-images/${user.profile.image}`,
+    });
+
+    const signedUrl = await getSignedUrl(s3, getObjectCommand, { expiresIn: 3600 });
+
+    user.profile.image = user.profile.image ? signedUrl : null;
   }
 
   return {
