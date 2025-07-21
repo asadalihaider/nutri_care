@@ -12,8 +12,6 @@ import {
   HealthOptimizationCode,
   MealFrequencyCode,
   NutrientPreferenceCode,
-  SleepQualityCode,
-  StressLevelCode,
   SubstanceConsumptionCode,
   WaterIntakeCode
 } from '../types/enums';
@@ -24,6 +22,7 @@ export const profileSchema = z.object({
   height: z.number().min(0),
   weight: z.number().min(0),
   targetWeight: z.number().min(0),
+  image: z.string().optional(),
 });
 
 export const questionnaireSchema = z.object({
@@ -42,9 +41,7 @@ export const questionnaireSchema = z.object({
   lifestyleHabits: z.object({
     energyLevels: z.nativeEnum(EnergyLevelCode),
     waterIntake: z.nativeEnum(WaterIntakeCode),
-    sleepQualityCode: z.nativeEnum(SleepQualityCode),
-    stressLevelCode: z.nativeEnum(StressLevelCode),
-    consumes: z.array(z.nativeEnum(SubstanceConsumptionCode)),
+    substanceConsumptionCode: z.array(z.nativeEnum(SubstanceConsumptionCode)),
   }),
   dietPreferences: z.object({
     diets: z.array(z.nativeEnum(DietCode)),

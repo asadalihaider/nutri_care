@@ -11,8 +11,6 @@ import {
   HealthOptimizationCode,
   MealFrequencyCode,
   NutrientPreferenceCode,
-  SleepQualityCode,
-  StressLevelCode,
   SubstanceConsumptionCode,
   WaterIntakeCode
 } from './enums';
@@ -45,8 +43,6 @@ export interface MedicalBackground {
 export interface LifestyleHabits {
   energyLevels: EnergyLevelCode;
   waterIntake: WaterIntakeCode;
-  sleepQualityCode?: SleepQualityCode;
-  stressLevelCode?: StressLevelCode;
   substanceConsumptionCode: SubstanceConsumptionCode[];
 }
   

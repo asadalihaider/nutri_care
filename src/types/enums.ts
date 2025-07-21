@@ -11,20 +11,6 @@ export enum WaterIntakeCode {
   MORE_THAN_3L = 'MT3',       // More than 3 liters
 }
 
-export enum SleepQualityCode {
-  POOR = 'PR',
-  FAIR = 'FR',
-  GOOD = 'GD',
-  EXCELLENT = 'EX'
-}
-
-export enum StressLevelCode {
-  RARELY = 'RAR',
-  OCCASIONALLY = 'OCC',
-  OFTEN = 'OFT',
-  CONSTANTLY = 'CST'
-}
-
 export enum SubstanceConsumptionCode {
   ALCOHOL = 'ALC', 
   CAFFEINE = 'CAF', 
