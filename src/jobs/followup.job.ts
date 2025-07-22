@@ -10,7 +10,11 @@ export function startFollowupJob() {
         dateFor: { lte: today },
         notified: false,
       },
-      include: { user: true },
+      include: { 
+        user: {
+          include: { profile: true }
+        }
+      },
     });
 
     for (const entry of followups) {
@@ -21,7 +25,7 @@ export function startFollowupJob() {
       await prisma.notification.create({
         data: {
           userId,
-          title: `Hey ${user.name}, how're you today?`,
+          title: `Hey ${user.profile?.name ?? 'there'}, how're you today?`,
           message: `You mentioned yesterday ${simplified}. How have you been?`,
         },
       });
