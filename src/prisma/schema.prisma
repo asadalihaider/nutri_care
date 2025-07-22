@@ -9,7 +9,6 @@ datasource db {
 
 model User {
   id            String         @id @default(uuid())
-  name          String         @default("user123")
   email         String         @unique
   password      String
   isVerified    Boolean        @default(false)
@@ -36,12 +35,13 @@ model UserProfile {
   id           String   @id @default(uuid())
   user         User     @relation(fields: [userId], references: [id])
   userId       String   @unique
-  image        String?
-  age          Int
-  gender       String
-  height       Float
-  weight       Float
-  targetWeight Float
+  name         String   @default("user123")
+  image        String   @default("placeholder.png")
+  age          Int?
+  gender       String?
+  height       Float?
+  weight       Float?
+  targetWeight Float?
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 }

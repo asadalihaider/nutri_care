@@ -46,8 +46,7 @@ export async function login(data: { email: string; password: string, rememberMe?
   return { 
     token, 
     user: { 
-      id: user.id, 
-      name: user.name,
+      id: user.id,
       email: user.email, 
       isVerified: user.isVerified, 
       questionnaire: !!user.questionnaire, 

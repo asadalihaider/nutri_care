@@ -17,11 +17,11 @@ import {
 } from '../types/enums';
 
 export const profileSchema = z.object({
-  age: z.number().min(0, 'Age must be a positive number'),
-  gender: z.string().min(2).max(10),
-  height: z.number().min(0),
-  weight: z.number().min(0),
-  targetWeight: z.number().min(0),
+  age: z.number().min(0, 'Age must be a positive number').optional(),
+  gender: z.string().min(2).max(10).optional(),
+  height: z.number().min(0).optional(),
+  weight: z.number().min(0).optional(),
+  targetWeight: z.number().min(0).optional(),
   image: z.string().optional(),
 });
 
