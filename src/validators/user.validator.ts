@@ -13,12 +13,13 @@ import {
   MealFrequency,
   NutrientPreference,
   SubstanceConsumption,
-  WaterIntake
+  WaterIntake,
+  Gender
 } from '../types/enums';
 
 export const profileSchema = z.object({
   age: z.number().min(0, 'Age must be a positive number').optional(),
-  gender: z.string().min(2).max(10).optional(),
+  gender: z.nativeEnum(Gender).optional(),
   height: z.number().min(0).optional(),
   weight: z.number().min(0).optional(),
   targetWeight: z.number().min(0).optional(),

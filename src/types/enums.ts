@@ -1,3 +1,9 @@
+export enum Gender {
+  MALE = 'male',
+  FEMALE = 'female',
+  OTHER = 'other'
+}
+
 export enum EnergyLevel {
   LOW = 'low',
   MODERATE = 'moderate',
