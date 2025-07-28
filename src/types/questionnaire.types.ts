@@ -1,20 +1,19 @@
 import { 
-  ActivityLevelCode,
-  BodyTypeGoalCode,
-  DietaryGoalCode,
-  DietCode,
-  DietPreferenceCode,
-  EnergyLevelCode,
-  ExerciseFrequencyCode,
-  FitnessGoalCode,
-  HealthMotivationCode,
-  HealthOptimizationCode,
-  MealFrequencyCode,
-  NutrientPreferenceCode,
-  SubstanceConsumptionCode,
-  WaterIntakeCode
+  ActivityLevel,
+  BodyTypeGoal,
+  DietaryGoal,
+  Diet,
+  DietPreference,
+  EnergyLevel,
+  ExerciseFrequency,
+  FitnessGoal,
+  HealthMotivation,
+  HealthOptimization,
+  MealFrequency,
+  NutrientPreference,
+  SubstanceConsumption,
+  WaterIntake
 } from './enums';
-
   
 interface Medication {
   name: string;
@@ -41,33 +40,33 @@ export interface MedicalBackground {
 }
   
 export interface LifestyleHabits {
-  energyLevels: EnergyLevelCode;
-  waterIntake: WaterIntakeCode;
-  substanceConsumptionCode: SubstanceConsumptionCode[];
+  energyLevels: EnergyLevel;
+  waterIntake: WaterIntake;
+  substanceConsumption: SubstanceConsumption[];
 }
   
 export interface DietPreferences {
-  diets: DietCode[];
+  diets: Diet[];
   isFoodInTolerances: boolean;
   foodInTolerances: string[];
   isFoodDislikes: boolean;
   foodDislikes: string[];
-  dietPreferenceReligiousCode: DietPreferenceCode;
-  dietaryGoalCode: DietaryGoalCode;
-  mealFrequencyCode: MealFrequencyCode;
-  nutrientPreferenceCode: NutrientPreferenceCode;
+  dietPreferenceReligious: DietPreference;
+  dietaryGoal: DietaryGoal;
+  mealFrequency: MealFrequency;
+  nutrientPreference: NutrientPreference;
 }
 
 export interface PhysicalActivity {
-  activityLevelCode: ActivityLevelCode;
-  exerciseFrequencyCode: ExerciseFrequencyCode;
-  fitnessGoalCode: FitnessGoalCode;
-  bodyTypeGoalCode: BodyTypeGoalCode;
+  activityLevel: ActivityLevel;
+  exerciseFrequency: ExerciseFrequency;
+  fitnessGoal: FitnessGoal;
+  bodyTypeGoal: BodyTypeGoal;
 }
 
 export interface HealthGoals {
-  healthOptimizationCode: HealthOptimizationCode;
-  healthMotivationCode: HealthMotivationCode;
+  healthOptimization: HealthOptimization;
+  healthMotivation: HealthMotivation;
 }
 
 export interface QuestionnaireInput {

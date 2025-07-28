@@ -1,19 +1,19 @@
 import { z } from 'zod';
 import {
-  ActivityLevelCode,
-  BodyTypeGoalCode,
-  DietaryGoalCode,
-  DietCode,
-  DietPreferenceCode,
-  EnergyLevelCode,
-  ExerciseFrequencyCode,
-  FitnessGoalCode,
-  HealthMotivationCode,
-  HealthOptimizationCode,
-  MealFrequencyCode,
-  NutrientPreferenceCode,
-  SubstanceConsumptionCode,
-  WaterIntakeCode
+  ActivityLevel,
+  BodyTypeGoal,
+  DietaryGoal,
+  Diet,
+  DietPreference,
+  EnergyLevel,
+  ExerciseFrequency,
+  FitnessGoal,
+  HealthMotivation,
+  HealthOptimization,
+  MealFrequency,
+  NutrientPreference,
+  SubstanceConsumption,
+  WaterIntake
 } from '../types/enums';
 
 export const profileSchema = z.object({
@@ -39,30 +39,30 @@ export const questionnaireSchema = z.object({
     isAnyHealthConcern: z.boolean(),
   }),
   lifestyleHabits: z.object({
-    energyLevels: z.nativeEnum(EnergyLevelCode),
-    waterIntake: z.nativeEnum(WaterIntakeCode),
-    substanceConsumptionCode: z.array(z.nativeEnum(SubstanceConsumptionCode)),
+    energyLevels: z.nativeEnum(EnergyLevel),
+    waterIntake: z.nativeEnum(WaterIntake),
+    substanceConsumption: z.array(z.nativeEnum(SubstanceConsumption)),
   }),
   dietPreferences: z.object({
-    diets: z.array(z.nativeEnum(DietCode)),
+    diets: z.array(z.nativeEnum(Diet)),
     isFoodInTolerances: z.boolean(),
     foodInTolerances: z.array(z.string()),
     isFoodDislikes: z.boolean(),
     foodDislikes: z.array(z.string()),
-    dietPreferenceReligiousCode: z.nativeEnum(DietPreferenceCode),
-    dietaryGoalCode: z.nativeEnum(DietaryGoalCode),
-    mealFrequencyCode: z.nativeEnum(MealFrequencyCode),
-    nutrientPreferenceCode: z.nativeEnum(NutrientPreferenceCode),
+    dietPreferenceReligious: z.nativeEnum(DietPreference),
+    dietaryGoal: z.nativeEnum(DietaryGoal),
+    mealFrequency: z.nativeEnum(MealFrequency),
+    nutrientPreference: z.nativeEnum(NutrientPreference),
   }),
   physicalActivity: z.object({
-    activityLevelCode: z.nativeEnum(ActivityLevelCode),
-    exerciseFrequencyCode: z.nativeEnum(ExerciseFrequencyCode),
-    fitnessGoalCode: z.nativeEnum(FitnessGoalCode),
-    bodyTypeGoalCode: z.nativeEnum(BodyTypeGoalCode),
+    activityLevel: z.nativeEnum(ActivityLevel),
+    exerciseFrequency: z.nativeEnum(ExerciseFrequency),
+    fitnessGoal: z.nativeEnum(FitnessGoal),
+    bodyTypeGoal: z.nativeEnum(BodyTypeGoal),
   }),
   healthGoals: z.object({
-    healthOptimizationCode: z.nativeEnum(HealthOptimizationCode),
-    healthMotivationCode: z.nativeEnum(HealthMotivationCode),
+    healthOptimization: z.nativeEnum(HealthOptimization),
+    healthMotivation: z.nativeEnum(HealthMotivation),
   }),
 });
 

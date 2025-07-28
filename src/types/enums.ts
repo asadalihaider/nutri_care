@@ -1,109 +1,109 @@
-export enum EnergyLevelCode {
-  LOW = 'LOW',
-  MODERATE = 'MOD',
-  HIGH = 'HIGH'
+export enum EnergyLevel {
+  LOW = 'low',
+  MODERATE = 'moderate',
+  HIGH = 'high'
 }
 
-export enum WaterIntakeCode {
-  LESS_THAN_1L = 'LT1',       // Less than 1 liter
-  ONE_TO_TWO_L = '12L',       // 1-2 liters
-  TWO_TO_THREE_L = '23L',     // 2-3 liters
-  MORE_THAN_3L = 'MT3',       // More than 3 liters
+export enum WaterIntake {
+  LESS_THAN_1L = 'less_than_one_liter',
+  ONE_TO_TWO_L = 'one_to_two_liter',
+  TWO_TO_THREE_L = 'two_to_three_liter',
+  MORE_THAN_3L = 'more_than_three_liter',
 }
 
-export enum SubstanceConsumptionCode {
-  ALCOHOL = 'ALC', 
-  CAFFEINE = 'CAF', 
-  NICOTINE = 'NIC', 
-  RECREATIONAL_DRUGS = 'DRG'
+export enum SubstanceConsumption {
+  ALCOHOL = 'alcohol', 
+  CAFFEINE = 'caffeine', 
+  NICOTINE = 'nicotine', 
+  RECREATIONAL_DRUGS = 'recreational_drugs'
 }
-export enum ActivityLevelCode {
-  SEDENTARY = 'SED',
-  LIGHTLY_ACTIVE = 'LGT',
-  MODERATELY_ACTIVE = 'MOD',
-  VERY_ACTIVE = 'VRY'
-}
-
-export enum ExerciseFrequencyCode {
-  RARELY = 'RAR',
-  ONE_TO_TWO_TIMES = '1-2',
-  THREE_TO_FOUR_TIMES = '3-4',
-  FIVE_OR_MORE_TIMES = '5+'
+export enum ActivityLevel {
+  SEDENTARY = 'sedentary',
+  LIGHTLY_ACTIVE = 'lightly_active',
+  MODERATELY_ACTIVE = 'moderately_active',
+  VERY_ACTIVE = 'very_active'
 }
 
-
-export enum FitnessGoalCode {
-  WEIGHT_LOSS = 'WL',
-  MUSCLE_GAIN = 'MG',
-  ENDURANCE = 'END',
-  FLEXIBILITY = 'FLX',
-  OVERALL_FITNESS = 'OF'
-}
-
-export enum BodyTypeGoalCode {
-  LEAN_AND_TONED = 'LT',
-  MUSCULAR_AND_STRONG = 'MUS',
-  SLIM_AND_FIT = 'SLIM',
-  CURVY_AND_HEALTHY = 'CURVY',
-  ATHLETIC_AND_ENDURANCE_FOCUSED = 'ATH',
-  BALANCED_AND_PROPORTIONAL = 'BAL',
-  REHABILITATION_AND_RECOVERY = 'RR'
-}
-
-export enum HealthOptimizationCode {
-  PHYSICAL_ENDURANCE = 'PE',
-  MENTAL_CLARITY = 'MC',
-  SLEEP_QUALITY = 'SQ',
-  IMMUNE_SUPPORT = 'IS',
-  ENERGY_LEVELS = 'EL'
+export enum ExerciseFrequency {
+  RARELY = 'rarely',
+  ONE_TO_TWO_TIMES = 'one_to_two_times',
+  THREE_TO_FOUR_TIMES = 'three_to_four_times',
+  FIVE_OR_MORE_TIMES = 'five_or_more_times'
 }
 
 
-export enum HealthMotivationCode {
-  ACHIEVING_PERSONAL_GOALS = 'APG',
-  IMPROVING_DAILY_PERFORMANCE = 'IDP',
-  LONG_TERM_WELLNESS = 'LTW',
-  FAMILY_OR_PERSONAL_RELATIONSHIPS = 'FPR'
+export enum FitnessGoal {
+  WEIGHT_LOSS = 'weight_loss',
+  MUSCLE_GAIN = 'muscle_gain',
+  ENDURANCE = 'endurance',
+  FLEXIBILITY = 'flexibility',
+  OVERALL_FITNESS = 'overall_fitness'
 }
 
-export enum DietCode {
-  TRADITIONAL = 'TRD',     // Traditional diet
-  VEGAN = 'VGN',           // Vegan diet
-  VEGETARIAN = 'VEG',      // Vegetarian diet
-  PESCATARIAN = 'PSC',     // Pescatarian diet
-  KETOGENIC = 'KETO',      // Ketogenic diet
-  PALEO = 'PAL',           // Paleo diet
-  GLUTEN_FREE = 'GLF',     // Gluten-free diet
+export enum BodyTypeGoal {
+  LEAN_AND_TONED = 'lean_and_toned',
+  MUSCULAR_AND_STRONG = 'muscular_and_strong',
+  SLIM_AND_FIT = 'slim_and_fit',
+  CURVY_AND_HEALTHY = 'curvy_and_healthy',
+  ATHLETIC_AND_ENDURANCE_FOCUSED = 'athletic_and_endurance_focused',
+  BALANCED_AND_PROPORTIONAL = 'balanced_and_proportional',
+  REHABILITATION_AND_RECOVERY = 'rehabilitation_and_recovery'
 }
 
-export enum NutrientPreferenceCode {
-  HIGH_PROTEIN = 'HP',
-  LOW_CARB = 'LC',
-  FIBER_RICH = 'FR',
-  HEART_HEALTHY = 'HH',
-  IMMUNE_BOOSTING = 'IB'
+export enum HealthOptimization {
+  PHYSICAL_ENDURANCE = 'physical_endurance',
+  MENTAL_CLARITY = 'mental_clarity',
+  SLEEP_QUALITY = 'sleep_quality',
+  IMMUNE_SUPPORT = 'immune_support',
+  ENERGY_LEVELS = 'energy_levels'
 }
 
 
-export enum MealFrequencyCode {
-  ONE_TO_TWO_MEALS = 'ONE_TWO',
-  THREE_MEALS = 'THREE',
-  FOUR_TO_FIVE_MEALS = 'FOUR_FIVE',
-  SIX_PLUS_MEALS = 'SIX_PLUS'
+export enum HealthMotivation {
+  ACHIEVING_PERSONAL_GOALS = 'achieving_personal_goals',
+  IMPROVING_DAILY_PERFORMANCE = 'improving_daily_performance',
+  LONG_TERM_WELLNESS = 'long_term_wellness',
+  FAMILY_OR_PERSONAL_RELATIONSHIPS = 'family_or_personal_relationships'
 }
 
-export enum DietaryGoalCode {
-  WEIGHT_LOSS = 'WL',
-  MUSCLE_GAIN = 'MG',
-  INCREASED_ENERGY = 'IE',
-  IMPROVED_DIGESTION = 'ID',
-  GENERAL_WELLNESS = 'GW'
+export enum Diet {
+  TRADITIONAL = 'traditional',
+  VEGAN = 'vegan',
+  VEGETARIAN = 'vegetarian',
+  PESCATARIAN = 'pescatarian',
+  KETOGENIC = 'ketogenic',
+  PALEO = 'paleo',
+  GLUTEN_FREE = 'gluten_free',
 }
 
-export enum DietPreferenceCode {
-  HALAL = 'HAL',
-  KOSHER = 'KOS',
-  HINDU_VEGETARIAN = 'HVEG',
-  BUDDHIST_VEGETARIAN = 'BVEG',
-  NO_PREFERENCE = 'NOPREF'
+export enum NutrientPreference {
+  HIGH_PROTEIN = 'high_protein',
+  LOW_CARB = 'low_carb',
+  FIBER_RICH = 'fiber_rich',
+  HEART_HEALTHY = 'heart_healthy',
+  IMMUNE_BOOSTING = 'immune_boosting'
+}
+
+
+export enum MealFrequency {
+  ONE_TO_TWO_MEALS = 'one_to_two_meals',
+  THREE_MEALS = 'three_meals',
+  FOUR_TO_FIVE_MEALS = 'four_to_five_meals',
+  SIX_PLUS_MEALS = 'six_plus_meals'
+}
+
+export enum DietaryGoal {
+  WEIGHT_LOSS = 'weight_loss',
+  MUSCLE_GAIN = 'muscle_gain',
+  INCREASED_ENERGY = 'increased_energy',
+  IMPROVED_DIGESTION = 'improved_digestion',
+  GENERAL_WELLNESS = 'general_wellness'
+}
+
+export enum DietPreference {
+  HALAL = 'halal',
+  KOSHER = 'kosher',
+  HINDU_VEGETARIAN = 'hindu_vegetarian',
+  BUDDHIST_VEGETARIAN = 'buddhist_vegetarian',
+  NO_PREFERENCE = 'no_preference'
 }
