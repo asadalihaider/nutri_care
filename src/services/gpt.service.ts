@@ -1,6 +1,5 @@
 import prisma from '../prisma/client';
 import { getOpenAIResponse } from '../utils/openAi';
-import { getNutritionPlanPrompt } from '../prompts/nutritionPrompts';
 import { getBloodReportSummaryPrompt } from '../prompts/getBloodReportSummaryPrompt';
 
 export async function generateWeeklyPlan(userId: string) {
@@ -13,11 +12,18 @@ export async function generateWeeklyPlan(userId: string) {
     throw new Error('Incomplete onboarding or questionnaire');
   }
 
-  const prompt = getNutritionPlanPrompt({
-    profile: user.profile,
-    questionnaire: user.questionnaire,
+  const prompt = JSON.stringify({
+    age: user.profile.age,
+    gender: user.profile.gender,
+    height: user.profile.height,
+    weight: user.profile.weight,
+    targetWeight: user.profile.targetWeight,
+    medicalBackground: user.questionnaire.medicalBackground,
+    lifestyleHabits: user.questionnaire.lifestyleHabits,
+    dietPreferences: user.questionnaire.dietPreferences,
+    physicalActivity: user.questionnaire.physicalActivity,
+    healthGoals: user.questionnaire.healthGoals,
   });
-
 
   const plan = await getOpenAIResponse(prompt);
 

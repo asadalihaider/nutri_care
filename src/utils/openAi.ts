@@ -8,7 +8,7 @@ const openai = new OpenAI({
 export async function getOpenAIResponse(prompt: string): Promise<string> {
   const chat = await openai.chat.completions.create({
     messages: [{ role: 'user', content: prompt }],
-    model: 'gpt-4',
+    model: 'ft:gpt-4.1-nano-2025-04-14:personal:nutri-care:ByFVAmQU',
     temperature: 0.7,
   });
 
