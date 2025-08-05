@@ -18,15 +18,13 @@ export function startFollowupJob() {
     });
 
     for (const entry of followups) {
-      const { id, userId, message, user } = entry;
-
-      const simplified = message.length > 50 ? 'that you weren’t feeling well' : `that you were feeling ${message}`;
+      const { id, userId, diseaseMentioned, user } = entry;
 
       await prisma.notification.create({
         data: {
           userId,
-          title: `Hey ${user.profile?.name ?? 'there'}, how're you today?`,
-          message: `You mentioned yesterday ${simplified}. How have you been?`,
+          title: `Hey ${user.profile?.name ?? 'there'}, how have you been?`,
+          message: `You mentioned yesterday that you were feeling ${diseaseMentioned}.`,
         },
       });
 

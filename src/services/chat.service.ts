@@ -47,15 +47,17 @@ export async function handleMessageWithHistory(userId: string, sessionId: string
     { role: 'user', content: message },
   ]);
 
-  if (response.includes('<<FOLLOW_UP>>')) {
+  const diseaseMentioned = response.match(/<<DISEASE_MENTIONED:([^>]+)>>/);
+  if (diseaseMentioned) {
     await prisma.chatFollowup.create({
       data: {
         userId,
         message,
-        dateFor: new Date(Date.now() + 24 * 60 * 60 * 1000), 
+        diseaseMentioned: diseaseMentioned[1],
+        dateFor: new Date(Date.now() + 24 * 60 * 60 * 1000),
       },
     });
-    response = response.replace('<<FOLLOW_UP>>', '').trim();
+    response = response.replace(diseaseMentioned[0], '').trim();
   }
 
   // Save assistant response

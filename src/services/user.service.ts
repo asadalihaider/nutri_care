@@ -77,7 +77,7 @@ export async function getUserData(userId: string) {
 
     const signedUrl = await getSignedUrl(s3, getObjectCommand, { expiresIn: 3600 });
 
-    user.profile.image = signedUrl ?? 'placeholder.png';
+    user.profile.image = signedUrl;
   }
 
   return {
